@@ -31,7 +31,7 @@ export const createProductos = async (req,res) => {
             des_producto
         })
     }catch(error){
-        return res.status(500).json({ message: 'Error a la hora de crear!'})
+        return res.status(500).json({ message: error.message })
     }
 }
 
