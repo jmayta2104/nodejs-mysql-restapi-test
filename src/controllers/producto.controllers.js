@@ -5,7 +5,7 @@ export const getProductos = async (req,res) => {
         const [rows] = await pool.query('SELECT * FROM PRODUCTOS')
         res.json(rows)
     }catch(error){
-        return res.status(500).json({ message: 'Error a la hora listar!'})
+        return res.status(500).json({ message: error.message })
     }
 }
 
@@ -15,7 +15,7 @@ export const getProductosId = async (req,res) => {
         if(rows.length <= 0) return res.status(404).json({message: 'Producto no encontrado'})
         res.json(rows[0])
     }catch(error){
-        return res.status(500).json({ message: 'Error a la hora de buscar por Id!'})
+        return res.status(500).json({ message: error.message })
     }
 }
 
@@ -42,7 +42,7 @@ export const deleteProductos = async (req,res) => {
         console.log(result);
         res.sendStatus(204)
     }catch(error){
-        return res.status(500).json({ message: 'Error a la hora de eliminar!'})
+        return res.status(500).json({ message: error.message })
     }
 }
 
@@ -57,6 +57,6 @@ export const updateProductos = async (req,res) => {
         const [rows] = await pool.query('SELECT * FROM PRODUCTOS WHERE cod_producto = ?',[id])
         res.json(rows[0])
     }catch(error){
-        return res.status(500).json({ message: 'Error a la hora de actualizar!'})
+        return res.status(500).json({ message: error.message })
     }
 }
